@@ -1,0 +1,24 @@
+# flyctl launch added from .gitignore
+# Binaries for programs and plugins
+**\*.exe
+**\*.exe~
+
+# IDE and editor files
+**\.vscode
+**\.idea
+**\*.swp
+**\*.swo
+
+# Environment variables
+**\.env
+
+# Logs
+**\*.log
+**\logs
+
+# Build artifacts
+**\app
+**\bin
+**\dist
+**\tes
+fly.toml

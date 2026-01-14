@@ -97,6 +97,9 @@ Search for products using a query string.
 curl "http://localhost:8080/search?q=paracetamol&size=10"
 ```
 
+**Postman Collection**
+`https://pf56v4a4-3763763.postman.co/workspace/Postpartum's-Workspace~fa37146d-0df7-4649-84d1-5157e2f98b1d/collection/51495705-a7a17800-72c4-4a94-94de-63a19289ec96?action=share&creator=51495705`
+
 ## Project Structure
 
 ```

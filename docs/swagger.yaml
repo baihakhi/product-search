@@ -1,0 +1,93 @@
+openapi: 3.0.4
+info:
+  title: Product Search API
+  description: API for searching products using Elasticsearch
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+  - url: https://product-search.fly.dev/
+    description: Hosted development server
+paths:
+  /search:
+    get:
+      summary: Search for products
+      description: Search products by query string
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query string
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 20
+          description: Number of results to return
+      responses:
+        '200':
+          description: Successful search
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseProduct'
+        '400':
+          description: Bad request - missing or invalid query parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Product ID
+        product_name:
+          type: string
+          description: Name of the product
+        drug_generic:
+          type: string
+          description: Generic drug name
+        company:
+          type: string
+          description: Company name
+        score:
+          type: number
+          format: float
+          description: Search relevance score
+      required:
+        - id
+        - product_name
+        - drug_generic
+        - company
+        - score
+    ResponseProduct:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+      required:
+        - results
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+        - error

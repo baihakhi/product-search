@@ -30,6 +30,7 @@ func (r *productRepo) SearchProducts(ctx context.Context, size int, q, idx strin
 			"multi_match": map[string]any{
 				"query":                q,
 				"fields":               []string{"product_name^3", "drug_generic^2", "company"},
+				"operator":             "or",
 				"fuzziness":            "AUTO",
 				"prefix_length":        1,
 				"minimum_should_match": "1",
